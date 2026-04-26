@@ -1,0 +1,12 @@
+**/.venv/
+**/venv/
+
+.DS_Store
+.env
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+bff/client/

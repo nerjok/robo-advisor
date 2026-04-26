@@ -1,0 +1,51 @@
+name: docker-push
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # - name: Restore .pfx certificate
+      #   run: |
+      #     echo "${{ secrets.ASPNET_PFX_BASE64 }}" | base64 -d > ./ssl/aspnet.pfx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/nerjok/robo-advisor:latest
+
+      - name: SSH into VM
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VM_IP }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker pull ghcr.io/nerjok/robo-advisor:latest
+            sudo docker stop robo-advisor || true
+            sudo docker rm robo-advisor || true
+            sudo docker run -d --name robo-advisor -p 80:8000 -p 443:443 ghcr.io/nerjok/robo-advisor:latest
