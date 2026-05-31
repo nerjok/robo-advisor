@@ -36,10 +36,31 @@ bonds_df =  pd.DataFrame({
 })
 
 # ---- Helper ----
+# Parse string to number and handle cases like '1.23%', '(1.23%)', '-', and empty strings
 def parse_percent(x):
-    if pd.isna(x) or x == '-':
+    if pd.isna(x) or x == '-' or str(x).strip() == '':
         return None
-    return float(x.replace('%','').replace('+','')) / 100
+
+    s = str(x).strip()
+
+    # handle negative values in parentheses like '(1.23%)'
+    negative = False
+    if s.startswith('(') and s.endswith(')'):
+        negative = True
+        s = s[1:-1].strip()
+
+    # remove percent sign, plus sign, and thousands separators
+    s = s.replace('%', '').replace('+', '').replace(',', '')
+
+    try:
+        val = float(s)
+    except ValueError:
+        return None
+
+    if negative:
+        val = -val
+
+    return val / 100
 
 
 # ---- Request model ----
@@ -80,7 +101,7 @@ def build_portfolio(user):
             df = df[df['domicile_country'] == "USA"]
 
     # pick top
-    df = df.sort_values(by='score', ascending=False).head(10)
+    df = df.sort_values(by='score', ascending=False).head(20)
 
     # total money
     numeric_string = str(user.years)
