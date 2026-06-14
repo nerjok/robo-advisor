@@ -12,10 +12,14 @@ import type { UserPreferences } from "~/models/investment-results";
 import { RiskLevel } from "~/models/risk.level";
 import { HttpService } from "~/services/http-service";
 import { useAppSelector } from "~/store/hooks";
-import { selectedValues } from "~/store/selectors/investment-state.selectors";
+import {
+  isStateSavedInStore,
+  selectedValues,
+} from "~/store/selectors/investment-state.selectors";
 
 export default function Proposals() {
   const investmentValues = useAppSelector(selectedValues);
+  const isSavedInStore = useAppSelector(isStateSavedInStore);
   const { t, i18n } = useTranslation();
 
   const mockedData = {
@@ -38,6 +42,17 @@ export default function Proposals() {
     });
   }, []);
 
+  if (!isSavedInStore) {
+    console.log("State was saved in store, using values:", investmentValues);
+    return (
+      <main className="flex-1 py-8 px-6 lg:px-20">
+        <ResultsHeader
+          title={t("personalized_strategy")}
+          description={t("complete_questionnaire")}
+        />
+      </main>
+    );
+  }
   return (
     <>
       <main className="flex-1 py-8 px-6 lg:px-20">

@@ -13,3 +13,4 @@ export const selectYears = (state: RootState) => state.investmentReducer.years
 export const selectedRiskLevel = (state: RootState) => state.investmentReducer.riskLevel;
 export const selectedRegions = (state: RootState) => state.investmentReducer.selectedRegions as Record<string, boolean>;
 export const selectedAssetClass = (state: RootState) => state.investmentReducer.assetClasses;
+export const isStateSavedInStore = (state: RootState) => state.investmentReducer.savedInStore;

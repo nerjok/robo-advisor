@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   const { t, i18n } = useTranslation();
   return (
-    <>
+    <div className="px-4 md:px-0 md:container md:mx-auto">
       <section>
         <div className="relative w-full h-[400px] rounded-xl overflow-hidden mb-12">
           <div
@@ -26,14 +26,17 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight mb-6">
               {t("democratizing_institutional_fin")}
             </h1>
-            <p id="our-mission" className="text-lg md:text-xl font-medium text-slate-200 leading-relaxed">
+            <p
+              id="our-mission"
+              className="text-lg md:text-xl font-medium text-slate-200 leading-relaxed"
+            >
               {t("finpath_descr")}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="mb-16" >
+      <section className="mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4">
           <div>
             <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">
@@ -119,7 +122,9 @@ export default function Home() {
                 balance
               </span>
             </div>
-            <h3 id="our-security" className="text-xl font-bold mb-3">{t("rebalancing")}</h3>
+            <h3 id="our-security" className="text-xl font-bold mb-3">
+              {t("rebalancing")}
+            </h3>
             <p className="text-slate-600 dark:text-slate-400">
               {t("constant_monitoring")}
             </p>
@@ -129,7 +134,7 @@ export default function Home() {
 
       <section className="py-16">
         <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2 order-2 md:order-1">
+          <div className="w-full md:w-1/2 order-2 md:order-1">
             <div className="grid grid-cols-2 gap-4">
               <div
                 className="h-48 bg-primary/20 rounded-xl flex items-center justify-center border border-primary/30"
@@ -232,6 +237,6 @@ export default function Home() {
         </div>
         <p className="mt-6 text-sm opacity-70">{t("no_sign_needed")}</p>
       </section>
-    </>
+    </div>
   );
 }

@@ -6,6 +6,7 @@ import { RiskLevel } from "~/models/risk.level";
 export const investmentState = createSlice({
   name: "investmentState",
   initialState: {
+    savedInStore: false,
     perYearInvestment: 100,
     years: "3y",
     riskLevel: RiskLevel.Medium,
@@ -31,6 +32,9 @@ export const investmentState = createSlice({
     setSelectedAssetClass: (state, action) => {
       state.assetClasses = action.payload;
     },
+    setSavedInStore: (state) => {
+      state.savedInStore = true;
+    }
   },
 });
 
@@ -39,7 +43,8 @@ export const {
   setYears,
   setSelectedRegions,
   setSelectedAssetClass,
-  setRiskLevel
+  setRiskLevel,
+  setSavedInStore
 } = investmentState.actions;
 
 export default investmentState.reducer;

@@ -2,22 +2,28 @@ import React from "react";
 import type { Step2Props } from "../steps.model";
 import { Step } from "~/models/steps";
 import { selectedValues } from "~/store/selectors/investment-state.selectors";
-import { useAppSelector } from "~/store/hooks";
+import { useAppDispatch, useAppSelector } from "~/store/hooks";
 import InfoCard from "~/components/info-card/info-card";
 import CardHeader from "~/components/card-header/card-header";
 import Warning from "~/components/warning/warning";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { store } from "~/store/store";
+import { saveState } from "~/store/browser-storage";
+import { setSavedInStore } from "~/store/reducers/investment-state.reducers";
 
 const Step4 = (props: Step2Props) => {
   const { t, i18n } = useTranslation();
   const investmentValues = useAppSelector(selectedValues);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const complete = () => {
     console.log("Completing Step 4 with values:", investmentValues);
     setTimeout(() => {
       // props.onComplete(Step.AmountsAndDuration);
+      dispatch(setSavedInStore());
+      saveState(store.getState());
       navigate("/routes/results");
     }, 3000);
   };
@@ -58,7 +64,7 @@ const Step4 = (props: Step2Props) => {
                     value={`${investmentValues.years} years`}
                   />
                   <InfoCard
-                    title={t('region')}
+                    title={t("region")}
                     value={Object.entries(investmentValues.selectedRegions)
                       .filter(([, isSelected]) => isSelected)
                       .map(([region]) => region)
@@ -106,14 +112,13 @@ const Step4 = (props: Step2Props) => {
                 <span className="material-symbols-outlined text-sm">
                   arrow_back
                 </span>
-                {t('previous_step')}
+                {t("previous_step")}
               </button>
               <button
                 className="w-full sm:w-auto px-12 py-3 rounded-lg font-bold text-white bg-primary hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
                 onClick={complete}
               >
-                
-                {t('complete')}
+                {t("complete")}
                 <span className="material-symbols-outlined text-sm">
                   check_circle
                 </span>

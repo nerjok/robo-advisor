@@ -1,10 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import  investmentReducer from "./reducers/investment-state.reducers";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import investmentReducer from "./reducers/investment-state.reducers";
+import { loadState } from "./browser-storage";
+
+const rootReducer = combineReducers({
+  investmentReducer,
+});
 
 export const store = configureStore({
-  reducer: {
-    investmentReducer: investmentReducer
-  },
+  devTools: true,
+  reducer: rootReducer,
+  preloadedState: loadState(),
 });
 
 // types (important for TS)
