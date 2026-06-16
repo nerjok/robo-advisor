@@ -3,7 +3,7 @@ import type { RootState } from "../store";
 
 export const selectedValues = (state: RootState) => ({
   perYearInvestment: state.investmentReducer.perYearInvestment,
-  years: parseInt(state.investmentReducer.years),
+  years: state.investmentReducer.years,
   riskLevel: state.investmentReducer.riskLevel,
   selectedRegions: state.investmentReducer.selectedRegions,
   assetClasses: state.investmentReducer.assetClasses,

@@ -18,4 +18,6 @@ export interface InvestmentAsset {
   type: AssetClass;
   yield: number;
   ticker: string;
+  volatility: number;
+  score: number;
 }

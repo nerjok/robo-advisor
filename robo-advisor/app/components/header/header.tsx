@@ -21,42 +21,37 @@ export default function Header() {
         </h2>
       </div>
       <div className="flex flex-1 justify-end gap-8 items-center">
-        <nav className="hidden md:flex items-center gap-9">
+        <nav className="md:flex items-center gap-9">
           <a
-            className="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+            className="hidden md:inline text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
             href="/#our-mission"
           >
-            {t('mission_link')}
+            {t("mission_link")}
           </a>
           <a
-            className="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+            className="hidden md:inline text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
             href="/#our-technology"
           >
-            {t('technology_link')}
+            {t("technology_link")}
           </a>
           <a
-            className="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+            className="hidden md:inline text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
             href="/#our-security"
           >
-            
-            {t('security_link')}
+            {t("security_link")}
           </a>
           <a
             className="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
             href="/routes/results"
           >
-            {t('resources_link')}
+            {t("resources_link")}
           </a>
         </nav>
-        {/* <button className="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all">
-          <span className="truncate">Launch Tool</span>
-        </button> */}
-
         <Link
           to="/routes/invest-steps"
           className="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all"
         >
-          {t('launch_tool')}
+          {t("launch_tool")}
         </Link>
       </div>
     </header>

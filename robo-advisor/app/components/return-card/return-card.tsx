@@ -48,7 +48,7 @@ ReturnCard.ValueContent = ({
 
 ReturnCard.RiskProfile = ({risk}: {risk: string}) => (
   <>
-    <p className="text-3xl font-bold text-slate-900 dark:text-slate-100">
+    <p className="text-3xl font-bold text-slate-900 dark:text-slate-100 capitalize">
       {risk}
     </p>
     {/* <div className="mt-2 flex items-center gap-2">

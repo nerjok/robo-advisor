@@ -16,7 +16,7 @@ const Step1 = (props: Step2Props) => {
 
   const [form, setForm] = useState({
     amount: 0,
-    duration: "3y",
+    duration: 3,
   });
 
   const completeSection = () => {
@@ -25,6 +25,10 @@ const Step1 = (props: Step2Props) => {
 
   useEffect(() => {
     setForm({
+      amount: perYearInvestment,
+      duration: years,
+    });
+    console.log("Initialized form with values from store:", {
       amount: perYearInvestment,
       duration: years,
     });
@@ -94,8 +98,8 @@ const Step1 = (props: Step2Props) => {
                     className="hidden"
                     name="duration"
                     type="radio"
-                    value="1y"
-                    checked={form.duration === "1y"}
+                    value="1"
+                    checked={form.duration === 1}
                     onChange={handleChange}
                   />
                 </label>
@@ -105,8 +109,8 @@ const Step1 = (props: Step2Props) => {
                     className="hidden"
                     name="duration"
                     type="radio"
-                    value="3y"
-                    checked={form.duration === "3y"}
+                    value="3"
+                    checked={form.duration === 3}
                     onChange={handleChange}
                   />
                 </label>
@@ -116,8 +120,8 @@ const Step1 = (props: Step2Props) => {
                     className="hidden"
                     name="duration"
                     type="radio"
-                    value="5y"
-                    checked={form.duration === "5y"}
+                    value="5"
+                    checked={form.duration == 5}
                     onChange={handleChange}
                   />
                 </label>
@@ -127,8 +131,8 @@ const Step1 = (props: Step2Props) => {
                     className="hidden"
                     name="duration"
                     type="radio"
-                    value="10y"
-                    checked={form.duration === "10y"}
+                    value="10"
+                    checked={form.duration == 10}
                     onChange={handleChange}
                   />
                 </label>

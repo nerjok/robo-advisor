@@ -4,17 +4,17 @@ import { calculatePlans, calculateYieldPerYear } from "./utils";
 import PlanItem from "./components/plan-item";
 import { useTranslation } from "react-i18next";
 
-function ReturnsReview(props: { amount: number; duration: string }) {
+function ReturnsReview(props: { amount: number; duration: number }) {
   const { t, i18n } = useTranslation();
   const totalInvestment = useMemo(() => {
     const amt = Number(props.amount) || 0;
-    const yrs = props.duration === "10y" ? 10 : parseInt(props.duration, 10);
+    const yrs = props.duration;// === "10y" ? 10 : parseInt(props.duration, 10);
     return amt * 12 * yrs;
   }, [props.amount, props.duration]);
 
   const growthRates = useMemo(() => {
     const perYearInvestment = Number(props.amount) * 12;
-    const years = props.duration === "10y" ? 10 : parseInt(props.duration, 10);
+    const years = props.duration;// === "10y" ? 10 : parseInt(props.duration, 10);
 
     const chartData = calculateYieldPerYear(perYearInvestment, years);
 

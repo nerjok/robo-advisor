@@ -141,6 +141,7 @@ def build_portfolio(user):
             "code": row["isin"],
             "yield": round(row["annual_return"] * 100, 2),
             "score": row["score"],
+            "volatility": row["volatility"],
             # TODO add regon
             "region": "Global"
         })

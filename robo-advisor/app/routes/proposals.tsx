@@ -53,6 +53,13 @@ export default function Proposals() {
       </main>
     );
   }
+
+  const expectedReturn =
+    callWith.riskLevel === RiskLevel.Low
+      ? "<5.2%"
+      : callWith.riskLevel === RiskLevel.Medium
+        ? "<10%"
+        : "<15%";
   return (
     <>
       <main className="flex-1 py-8 px-6 lg:px-20">
@@ -69,10 +76,6 @@ export default function Proposals() {
               iconClass="bg-primary/10 rounded-lg text-primary"
               title={t("total_investment_value")}
             >
-              {/* <ReturnCard.ValueContent
-                value="$50,000.00"
-                additionalValue="Available for trading"
-              /> */}
               <div>
                 <div>
                   <b>{t("per_month")}</b> {callWith.perYearInvestment}
@@ -97,7 +100,7 @@ export default function Proposals() {
               title={t("total_investment_value")}
             >
               <ReturnCard.ValueContent
-                value="8.4%"
+                value={expectedReturn}
                 additionalValue={t("projected_annual_return")}
               />
             </ReturnCard>

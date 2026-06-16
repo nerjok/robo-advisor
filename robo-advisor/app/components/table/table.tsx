@@ -22,9 +22,9 @@ export default function Table({
             {t("portfolio_assets")}
           </h3>
           <div className="flex gap-2">
-            <button className="bg-white border border-outline-variant px-3 py-1 rounded-lg text-xs font-bold text-on-surface-variant hover:bg-slate-50 transition-colors">
+            {/* <button className="bg-white border border-outline-variant px-3 py-1 rounded-lg text-xs font-bold text-on-surface-variant hover:bg-slate-50 transition-colors">
               {t("export_csv")}
-            </button>
+            </button> */}
             <button
               onClick={printPdf}
               className="bg-white border border-outline-variant px-3 py-1 rounded-lg text-xs font-bold text-on-surface-variant hover:bg-slate-50 transition-colors"

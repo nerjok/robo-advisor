@@ -23,7 +23,7 @@ export default function Home() {
             <span className="bg-primary/30 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
               {t("new_era_finance")}
             </span>
-            <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight mb-6">
+            <h1 className="text-4xl md:text-5xl font-black leading-tight tracking-tight mb-6">
               {t("democratizing_institutional_fin")}
             </h1>
             <p

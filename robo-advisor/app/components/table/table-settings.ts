@@ -114,7 +114,7 @@ export const mapInvestmentAssetsToTable = (
         code: asset.ticker ?? "",
       },
       isin: asset.code,
-      risk: RiskLevel.Medium,
+      risk: asset.volatility > 0.22 ? RiskLevel.High : asset.volatility < 0.10 ? RiskLevel.Low : RiskLevel.Medium,
       yield: asset.yield,
       assetType: asset.type,
       region: asset.region,

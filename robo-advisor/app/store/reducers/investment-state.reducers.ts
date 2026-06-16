@@ -8,7 +8,7 @@ export const investmentState = createSlice({
   initialState: {
     savedInStore: false,
     perYearInvestment: 100,
-    years: "3y",
+    years: 3,
     riskLevel: RiskLevel.Medium,
     assetClasses: AssetClass.Both,
     selectedRegions: {
