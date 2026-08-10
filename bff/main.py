@@ -178,6 +178,11 @@ app.mount(
     name="assets"
 )
 
+@app.route('/.well-known/acme-challenge/<filename>')
+def acme_challenge(filename):
+    # Sukurk .well-known/acme-challenge papkę šalia app.py arba /tmp kataloge
+    return send_from_directory('/var/www/html/.well-known/acme-challenge', filename)
+
 # 3. SPA fallback (CRITICAL)
 @app.get("/{path:path}")
 def spa(path: str):
