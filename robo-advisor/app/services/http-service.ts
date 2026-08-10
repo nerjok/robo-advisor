@@ -10,7 +10,7 @@ export default function isDev(): boolean
 }
 
 export class HttpService {
-  public static baseUrlProd = "http://82.70.52.40"
+  public static baseUrlProd = "https://investicijuklubas.lt";
   public static baseUrl: string = "http://127.0.0.1:8000";
 
   static fetchProposals(preferences: UserPreferences): Promise<InvestmentAsset[]> {

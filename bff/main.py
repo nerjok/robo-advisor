@@ -1,4 +1,5 @@
 import os
+import ssl
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
@@ -7,6 +8,12 @@ from pydantic import BaseModel
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
 
+# CERT_FILE = os.getenv("SSL_CERT_FILE", "/etc/letsencrypt/live/investicijuklubas.lt/fullchain.pem")
+# KEY_FILE = os.getenv("SSL_KEY_FILE", "/etc/letsencrypt/live/investicijuklubas.lt/privkey.pem")
+
+# context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+# context.load_cert_chain(certfile=CERT_FILE, keyfile=KEY_FILE)
+
 app = FastAPI()
 
 origins = [
@@ -14,6 +21,10 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:5174",
+    "http://investicijuklubas.lt",
+    "http://www.investicijuklubas.lt",
+    "https://investicijuklubas.lt",
+    "https://www.investicijuklubas.lt",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -178,10 +189,6 @@ app.mount(
     name="assets"
 )
 
-@app.route('/.well-known/acme-challenge/<filename>')
-def acme_challenge(filename):
-    # Sukurk .well-known/acme-challenge papkę šalia app.py arba /tmp kataloge
-    return send_from_directory('/var/www/html/.well-known/acme-challenge', filename)
 
 # 3. SPA fallback (CRITICAL)
 @app.get("/{path:path}")

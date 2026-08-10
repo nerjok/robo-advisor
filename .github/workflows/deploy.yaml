@@ -40,12 +40,29 @@ jobs:
 
       - name: SSH into VM
         uses: appleboy/ssh-action@v1
+        env:
+          SSL_FULLCHAIN: ${{ secrets.SSL_FULLCHAIN }}
+          SSL_PRIVATE_KEY: ${{ secrets.SSL_PRIVATE_KEY }}
         with:
           host: ${{ secrets.VM_IP }}
           username: ubuntu
+          envs: SSL_FULLCHAIN,SSL_PRIVATE_KEY
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            sudo mkdir -p /etc/letsencrypt/live/investicijuklubas.lt
+            printf '%s' "$SSL_FULLCHAIN" | sudo tee /etc/letsencrypt/live/investicijuklubas.lt/fullchain.pem > /dev/null
+            printf '%s' "$SSL_PRIVATE_KEY" | sudo tee /etc/letsencrypt/live/investicijuklubas.lt/privkey.pem > /dev/null
+
+            sudo chmod 644 /etc/letsencrypt/live/investicijuklubas.lt/fullchain.pem
+            sudo chmod 644 /etc/letsencrypt/live/investicijuklubas.lt/privkey.pem
+
             sudo docker pull ghcr.io/nerjok/robo-advisor:latest
             sudo docker stop robo-advisor || true
             sudo docker rm robo-advisor || true
-            sudo docker run -d --name robo-advisor -p 80:8000 -p 443:443 ghcr.io/nerjok/robo-advisor:latest
+            # sudo docker run -d --name robo-advisor -p 80:8000 -p 443:443 ghcr.io/nerjok/robo-advisor:latest
+            sudo docker run -d --name robo-advisor \
+              -p 80:8000 \
+              -p 443:443 \
+              -v /etc/letsencrypt/live/investicijuklubas.lt/fullchain.pem:/app/fullchain.pem:ro \
+              -v /etc/letsencrypt/live/investicijuklubas.lt/privkey.pem:/app/privkey.pem:ro \
+              ghcr.io/nerjok/robo-advisor:latest
