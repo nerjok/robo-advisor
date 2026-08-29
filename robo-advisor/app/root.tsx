@@ -43,11 +43,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <title>Investicijų Klubas | Investicijų įrankiai ir ETF palyginimas pagal grąžą ir riziką</title>
         <Links />
       </head>
       <body className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
         <Header />
-
         {children}
         <Footer />
         <ScrollRestoration />

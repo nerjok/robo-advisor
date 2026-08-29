@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Investicijų Klubas | Investicijų įrankiai ir ETF palyginimas pagal grąžą ir riziką" },
+    { name: "description", content: "Investicijų Klubas | Investicijų įrankiai ir ETF palyginimas pagal grąžą ir riziką" },
   ];
 }
 

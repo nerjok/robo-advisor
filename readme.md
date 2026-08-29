@@ -39,3 +39,8 @@ docker run -d -p 8000:8000 nerjok/robo-advisor:latest
 
 sudo docker run -d -p 80:8000 nerjok/robo-advisor:latest
 
+
+
+sudo certbot certonly --manual --preferred-challenges dns -d investicijuklubas.lt -d www.investicijuklubas.lt 
+
+nslookup -type=TXT _acme-challenge.www.investicijuklubas.lt
